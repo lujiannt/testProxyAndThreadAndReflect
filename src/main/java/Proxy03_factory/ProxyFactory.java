@@ -16,10 +16,6 @@ public class ProxyFactory implements InvocationHandler {
         this.target = target;
     }
 
-    private Object getTarget() {
-        return target;
-    }
-
     /**
      * 初始化工厂
      *
