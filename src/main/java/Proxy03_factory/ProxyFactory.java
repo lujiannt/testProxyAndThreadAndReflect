@@ -16,6 +16,10 @@ public class ProxyFactory implements InvocationHandler {
         this.target = target;
     }
 
+    private Object getTarget() {
+        return target;
+    }
+
     /**
      * 初始化工厂
      *
@@ -36,7 +40,7 @@ public class ProxyFactory implements InvocationHandler {
         if (proxyFactory == null) {
             throw new RuntimeException("工厂未初始化..");
         }else {
-            proxyFactory.setTarget(object);
+            this.setTarget(object);
         }
         return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), proxyFactory);
     }
