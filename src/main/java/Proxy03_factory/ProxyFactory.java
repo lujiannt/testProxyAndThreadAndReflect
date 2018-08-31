@@ -8,11 +8,11 @@ public class ProxyFactory implements InvocationHandler {
     private Object target;
     private static ProxyFactory proxyFactory = null;
 
-    public ProxyFactory() {
+    private ProxyFactory() {
         super();
     }
 
-    public ProxyFactory(Object target) {
+    private void setTarget(Object target) {
         this.target = target;
     }
 
@@ -21,9 +21,9 @@ public class ProxyFactory implements InvocationHandler {
      *
      * @return
      */
-    public static ProxyFactory instanceFactory(Object object) {
+    public static ProxyFactory instanceFactory() {
         if (proxyFactory == null)
-            proxyFactory = new ProxyFactory(object);
+            proxyFactory = new ProxyFactory();
         return proxyFactory;
     }
 
@@ -32,9 +32,12 @@ public class ProxyFactory implements InvocationHandler {
      *
      * @return
      */
-    public Object getProxy() {
-        if (proxyFactory == null)
-            throw new RuntimeException("代理工厂未初始化..");
+    public Object getProxy(Object object) {
+        if (proxyFactory == null) {
+            throw new RuntimeException("工厂未初始化..");
+        }else {
+            proxyFactory.setTarget(object);
+        }
         return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), proxyFactory);
     }
 
