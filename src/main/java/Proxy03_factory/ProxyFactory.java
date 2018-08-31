@@ -43,6 +43,12 @@ public class ProxyFactory implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("----------------------------invoke-----------------------------");
+        System.out.println("class : " + method.getDeclaringClass().getSimpleName());
+        System.out.println("method : " + method.getName());
+        System.out.println("paramTypes : " + method.getParameterTypes());
+        System.out.println("params : " + args);
+        System.out.println("-----------------------------------------------------------------");
         return method.invoke(target, args);
     }
 }

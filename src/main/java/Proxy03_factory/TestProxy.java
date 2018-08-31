@@ -13,7 +13,7 @@ public class TestProxy {
         Person student = new Student("张三");
         Person proxy = (Person) ProxyFactory.instanceFactory().getProxy(student);
         proxy.sayName();
-        proxy.showHobby("吃");
+//        proxy.showHobby("吃");
     }
 
     @Test
